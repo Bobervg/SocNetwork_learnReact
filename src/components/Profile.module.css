@@ -1,0 +1,18 @@
+.content {
+    grid-area: content;
+    background-color: cornflowerblue;
+  }
+  .content img {
+    width: 100%;
+    height: 200px;
+  }
+  .avatar img {
+    width: 10%;
+    height: 10%;
+  }
+.item {
+  color:brown;
+}
+.gold {
+  color: gold;
+}
