@@ -20,6 +20,7 @@ const Navbar = () => {
           <NavLink activeClassName={styles.activeLink} to={'/Music'}>Music</NavLink>
         </div>
         <div>
+        <img srv='https://upload.wikimedia.org/wikipedia/commons/6/6d/Windows_Settings_app_icon.png'></img>
           <NavLink activeClassName={styles.activeLink} to={'/Settings'}>Settings</NavLink>
         </div>
       </div>

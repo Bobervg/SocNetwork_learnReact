@@ -3,8 +3,8 @@ import styles from './Settings.module.css'
 
 const Settings = (props) => {
     return (
-        <div> Settings
-            
+        <div> <img srv='https://upload.wikimedia.org/wikipedia/commons/6/6d/Windows_Settings_app_icon.png'></img>
+        Settings
         </div>
     )
 }

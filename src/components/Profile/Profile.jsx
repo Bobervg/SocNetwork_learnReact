@@ -13,7 +13,6 @@ const Profile = () => {
         <div>ava+desc</div>
       </div>
       <MyPosts />
-      Main content
     </div>
   )
 }

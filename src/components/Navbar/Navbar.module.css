@@ -1,20 +1,23 @@
 .navbar {
     grid-area: navbar;
-    background-color:gold;
+    background-color:#334a5c;
     padding: 20px;
     margin: 15px;
   }
-  
+.navbar img {
+  width: 10px;
+  height: 10px;
+}
 .item {
-  color: green;
+  color: #b0c4d4;
   text-decoration: none;
 }
 .activeLink {
-  color: goldenrod;
+  color: #6a88a1;
   text-decoration: none;
 }
 
 a {
-  color: green;
+  color: #b0c4d4;
   text-decoration: none;
 }

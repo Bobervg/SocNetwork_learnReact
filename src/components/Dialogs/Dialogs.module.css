@@ -1,0 +1,21 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    color: black;
+}
+.dialogs_names {
+    padding: 10px;
+}
+.dialogs_name {
+    padding: 10px;
+}
+.dialogs_name .active {
+    color: goldenrod;
+}
+.messages {
+    text-align: center;
+    padding: 10px;
+}
+.message{
+    padding: 10px;
+}
