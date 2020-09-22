@@ -8,19 +8,19 @@ const Navbar = () => {
     <div className={styles.navbar}>
       <div>
         <div>
-          <NavLink className={styles.item} activeClassName={styles.activeLink} to='/Profile'>Profile</NavLink>
+          <NavLink activeClassName={styles.activeLink} to='/Profile'>Profile</NavLink>
         </div>
         <div>
-          <NavLink className={styles.item} activeClassName={styles.activeLink} to='/Dialogs'>Messages</NavLink>
+          <NavLink activeClassName={styles.activeLink} to='/Dialogs'>Messages</NavLink>
         </div>
         <div>
-          <NavLink className={styles.item} activeClassName={styles.activeLink} to={'/News'}>News</NavLink>
+          <NavLink activeClassName={styles.activeLink} to={'/News'}>News</NavLink>
         </div>
         <div>
-          <NavLink className={styles.item} activeClassName={styles.activeLink} to={'/Music'}>Music</NavLink>
+          <NavLink activeClassName={styles.activeLink} to={'/Music'}>Music</NavLink>
         </div>
         <div>
-          <NavLink className={styles.item} activeClassName={styles.activeLink} to={'/Settings'}>Settings</NavLink>
+          <NavLink activeClassName={styles.activeLink} to={'/Settings'}>Settings</NavLink>
         </div>
       </div>
     </div>
