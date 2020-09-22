@@ -4,13 +4,15 @@ import Post from './Post/Post.jsx';
 
 const MyPosts = () => {
     return (
-        <div>
+        <div className={styles.myposts}>
             <div>Myposts</div>
-            <textarea></textarea>
-            <button>Add Post</button>
+            <div className={styles.postbox}>
+                <div><textarea className={styles.textarea}>Введите новое сообщение</textarea></div>
+                <div><button>Add Post</button></div>
+            </div>
             <div className='post'>
-                <Post message='first post'/>
-                <Post message='second post'/>
+                <Post message='first post' likecount='15' />
+                <Post message='second post' likecount='20' />
             </div>
         </div>
     )
