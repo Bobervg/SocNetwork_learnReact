@@ -3,15 +3,17 @@
     grid-template-columns: 2fr 10fr;
     color: black;
 }
-.dialogs_names {
+.dialogsNames {
     padding: 10px;
 }
-.dialogs_name {
-    padding: 10px;
-}
-.dialogs_name .active {
+.dialogsNames .active {
     color: goldenrod;
 }
+.dialogsName {
+    padding: 10px;
+    color: #405e77;
+}
+
 .messages {
     text-align: center;
     padding: 10px;

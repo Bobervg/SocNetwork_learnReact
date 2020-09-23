@@ -1,12 +1,13 @@
 import React from 'react';
 import styles from './Navbar.module.css';
 import { NavLink } from 'react-router-dom';
+import FriendsBar from './FriendsBar/FriendsBar';
 
 
-const Navbar = () => {
+const Navbar = (props) => {
   return (
-    <div className={styles.navbar}>
-      <div>
+    <div>
+      <div className={styles.navbar}>
         <div>
           <NavLink activeClassName={styles.activeLink} to='/Profile'>Profile</NavLink>
         </div>
@@ -20,9 +21,12 @@ const Navbar = () => {
           <NavLink activeClassName={styles.activeLink} to={'/Music'}>Music</NavLink>
         </div>
         <div>
-        <img srv='https://upload.wikimedia.org/wikipedia/commons/6/6d/Windows_Settings_app_icon.png'></img>
+          <img srv='https://upload.wikimedia.org/wikipedia/commons/6/6d/Windows_Settings_app_icon.png'></img>
           <NavLink activeClassName={styles.activeLink} to={'/Settings'}>Settings</NavLink>
         </div>
+      </div>
+      <div>
+        <FriendsBar bestFriendsData={props.sidebarData.bestFriendsData} />
       </div>
     </div>
   )

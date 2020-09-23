@@ -1,0 +1,9 @@
+.content {
+    margin-top: 50px;
+    font-size: medium;
+    color: chocolate;
+    display: table-row;
+}
+.bestFriendsitem {
+    display: flex;
+}
