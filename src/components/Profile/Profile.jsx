@@ -9,7 +9,7 @@ const Profile = (props) => {
   return (
     <div>
         <ProfileInfo />
-        <MyPosts postsData = {props.postsPageData}/>
+        <MyPosts postsPageData = {props.postsPageData} addPost={props.addPost} updateNewPost={props.updateNewPost}/>
     </div>
   )
 }

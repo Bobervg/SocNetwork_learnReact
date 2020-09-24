@@ -21,3 +21,8 @@
 .message{
     padding: 10px;
 }
+.text_button {
+    margin-top: 100px;
+    display: flex  ;
+    flex-direction: column;
+}

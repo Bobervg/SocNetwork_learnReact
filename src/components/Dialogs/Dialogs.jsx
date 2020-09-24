@@ -7,20 +7,46 @@ import Message from './Message/Message';
 const Dialogs = (props) => {
 
     let dialogsElements = props.dialogsPageData.dialogsNamesData.map((dialog) => {
-        return <DialogName name={dialog.name} id={dialog.id} />});
+        return <DialogName name={dialog.name} id={dialog.id} />
+    });
 
-    
-        let messagesElements = props.dialogsPageData.messagesData.map((msg) => {
-        return <Message message={msg.message} id={msg.id} />})
+
+    let messagesElements = props.dialogsPageData.messagesData.map((msg) => {
+        return <Message message={msg.message} id={msg.id} />
+    })
+
+    let newMessage = React.createRef()
+
+    const addMessage = () => {
+        props.addMessage()
+    };
+
+    const updateNewMessage = () => {
+        let text = newMessage.current.value
+        props.updateNewMessage(text)
+    }
+
+    let clearTextArea = () => {
+        newMessage.current.value=''
+    }
 
     return (
         <div className={styles.dialogs}>
             <div className={styles.dialogsNames}>
-                { dialogsElements }
+                {dialogsElements}
             </div>
             <div className={styles.messages}>
-                { messagesElements }
-        </div>
+                {messagesElements}
+                <div className={styles.text_button}>
+                <div className={styles.textarea}>
+                    <textarea ref={newMessage} onChange={updateNewMessage} onClick={clearTextArea} value={props.dialogsPageData.newMessageData}></textarea>
+                </div>
+                <div>
+                    <button onClick={addMessage}>Отправить сообщение</button>
+                </div>
+            </div>
+            </div>
+            
         </div>
     )
 }
