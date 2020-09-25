@@ -18,12 +18,12 @@ const Dialogs = (props) => {
     let newMessage = React.createRef()
 
     const addMessage = () => {
-        props.addMessage()
+        props.dispatch({type: 'ADD-MESSAGE'})
     };
 
     const updateNewMessage = () => {
         let text = newMessage.current.value
-        props.updateNewMessage(text)
+        props.dispatch({type: "UPDATE-NEW-MESSAGE", newText: text })
     }
 
     let clearTextArea = () => {
