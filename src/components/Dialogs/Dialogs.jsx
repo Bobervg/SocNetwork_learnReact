@@ -3,6 +3,8 @@ import styles from './Dialogs.module.css'
 import { NavLink } from 'react-router-dom';
 import DialogName from './DialogName/DialogName';
 import Message from './Message/Message';
+import { addMessageActionCreator, updateNewMessageActionCreator } from './../../Redux/State'
+
 
 const Dialogs = (props) => {
 
@@ -15,19 +17,14 @@ const Dialogs = (props) => {
         return <Message message={msg.message} id={msg.id} />
     })
 
-    let newMessage = React.createRef()
 
     const addMessage = () => {
-        props.dispatch({type: 'ADD-MESSAGE'})
+        props.dispatch(addMessageActionCreator())
     };
 
-    const updateNewMessage = () => {
-        let text = newMessage.current.value
-        props.dispatch({type: "UPDATE-NEW-MESSAGE", newText: text })
-    }
-
-    let clearTextArea = () => {
-        newMessage.current.value=''
+    const updateNewMessage = (event) => {
+        let text = event.target.value
+        props.dispatch(updateNewMessageActionCreator(text))
     }
 
     return (
@@ -39,7 +36,7 @@ const Dialogs = (props) => {
                 {messagesElements}
                 <div className={styles.text_button}>
                 <div className={styles.textarea}>
-                    <textarea ref={newMessage} onChange={updateNewMessage} onClick={clearTextArea} value={props.dialogsPageData.newMessageData}></textarea>
+                    <textarea onChange={updateNewMessage}  value={props.dialogsPageData.newMessageData} placeholder='Введите сообщение'></textarea>
                 </div>
                 <div>
                     <button onClick={addMessage}>Отправить сообщение</button>

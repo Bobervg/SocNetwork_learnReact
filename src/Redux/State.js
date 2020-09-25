@@ -2,7 +2,7 @@ let store = {
 
     _state: {
         postsPageData: {
-            newpostPageData: 'Введите сообщение',
+            newpostPageData: '',
             postPageData: [
                 { id: 1, message: 'first post', likecount: 15 },
                 { id: 2, message: 'second post', likecount: 6 }
@@ -22,7 +22,7 @@ let store = {
                 { id: 3, message: 'Yo' },
                 { id: 4, message: 'Yo' },
                 { id: 5, message: 'Hi' }],
-            newMessageData: 'Введите сообщение'
+            newMessageData: ''
         },
         sidebarData: {
             bestFriendsData: [
@@ -69,6 +69,21 @@ let store = {
             this._callSubscriber(this._state);
         }
     }
+}
+
+export const addPostActionCreator = () => {
+    return {type: 'ADD-POST'}
+}
+export const onChangeNewPostActionCreator = (text) => {
+    
+    return {type:'UPDATE-NEW-POST', newText: text}
+}
+
+export const addMessageActionCreator = () => {
+    return { type: 'ADD-MESSAGE'}
+}
+export const updateNewMessageActionCreator = (text) => {
+    return { type: 'UPDATE-NEW-MESSAGE', newText: text }
 }
 
 // let rerenderEntiretree = () => {}

@@ -2,6 +2,9 @@ import React from 'react';
 import styles from './MyPosts.module.css';
 import Post from './Post/Post.jsx';
 import { cleanup } from '@testing-library/react';
+import { addPostActionCreator, onChangeNewPostActionCreator } from './../../../Redux/State'
+
+
 
 const MyPosts = (props) => {
 
@@ -10,18 +13,14 @@ const MyPosts = (props) => {
     }
     );
     
-    let clearTextArea = () => {
-        newPost.current.value = '';
-    }
-    
-    let newPost = React.createRef();
+
     
     const addPost = () => {
-        props.dispatch({type:'ADD-POST'})
+        props.dispatch (addPostActionCreator ())
     }
-    const onChangeNewPost = () => {
-        let text = newPost.current.value
-        props.dispatch({type:'UPDATE-NEW-POST', newText: text})
+    const onChangeNewPost = (event) => {
+        let text = event.target.value
+        props.dispatch (onChangeNewPostActionCreator(text))
     }
 
     return (
@@ -29,7 +28,7 @@ const MyPosts = (props) => {
             <div><h3>Myposts</h3></div>
             <div className={styles.postbox}>
                 <div>
-                    <textarea onChange={onChangeNewPost} onClick={clearTextArea} ref={newPost} className={styles.textarea} value={props.postsPageData.newpostPageData}/>
+                    <textarea onChange={onChangeNewPost} className={styles.textarea} value={props.postsPageData.newpostPageData} placeholder='Введите сообщение'/>
                 </div>
                 <div>
                     <button onClick={addPost}>Add Post</button>
