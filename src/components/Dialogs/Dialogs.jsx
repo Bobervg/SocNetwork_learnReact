@@ -1,9 +1,7 @@
 import React from 'react';
 import styles from './Dialogs.module.css'
-import { NavLink } from 'react-router-dom';
 import DialogName from './DialogName/DialogName';
 import Message from './Message/Message';
-import { addMessageActionCreator, updateNewMessageActionCreator } from './../../Redux/State'
 
 
 const Dialogs = (props) => {
@@ -12,19 +10,18 @@ const Dialogs = (props) => {
         return <DialogName name={dialog.name} id={dialog.id} />
     });
 
-
     let messagesElements = props.dialogsPageData.messagesData.map((msg) => {
         return <Message message={msg.message} id={msg.id} />
     })
 
 
     const addMessage = () => {
-        props.dispatch(addMessageActionCreator())
+        props.addMessage()
     };
 
     const updateNewMessage = (event) => {
         let text = event.target.value
-        props.dispatch(updateNewMessageActionCreator(text))
+        props.updateNewMessage(text)
     }
 
     return (
@@ -36,7 +33,7 @@ const Dialogs = (props) => {
                 {messagesElements}
                 <div className={styles.text_button}>
                 <div className={styles.textarea}>
-                    <textarea onChange={updateNewMessage}  value={props.dialogsPageData.newMessageData} placeholder='Введите сообщение'></textarea>
+                    <textarea onChange={updateNewMessage}  value={props.newMessageData} placeholder='Введите сообщение'></textarea>
                 </div>
                 <div>
                     <button onClick={addMessage}>Отправить сообщение</button>

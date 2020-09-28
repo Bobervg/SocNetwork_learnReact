@@ -1,8 +1,6 @@
 import React from 'react';
 import styles from './MyPosts.module.css';
 import Post from './Post/Post.jsx';
-import { cleanup } from '@testing-library/react';
-import { addPostActionCreator, onChangeNewPostActionCreator } from './../../../Redux/State'
 
 
 
@@ -13,14 +11,12 @@ const MyPosts = (props) => {
     }
     );
     
-
-    
     const addPost = () => {
-        props.dispatch (addPostActionCreator ())
+        props.addPost()
     }
-    const onChangeNewPost = (event) => {
+    const changeNewPost = (event) => {
         let text = event.target.value
-        props.dispatch (onChangeNewPostActionCreator(text))
+        props.changeNewPost(text)
     }
 
     return (
@@ -28,7 +24,7 @@ const MyPosts = (props) => {
             <div><h3>Myposts</h3></div>
             <div className={styles.postbox}>
                 <div>
-                    <textarea onChange={onChangeNewPost} className={styles.textarea} value={props.postsPageData.newpostPageData} placeholder='Введите сообщение'/>
+                    <textarea onChange={changeNewPost} className={styles.textarea} value={props.postsPageData.newpostPageData} placeholder='Введите сообщение'/>
                 </div>
                 <div>
                     <button onClick={addPost}>Add Post</button>

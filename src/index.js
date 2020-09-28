@@ -3,25 +3,26 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import store from './Redux/State';
-//import {addPost, addMessage, updateNewPost, updateNewMessage, subscribe} from './Redux/State';
+import store from './Redux/redux-store';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
 let rerenderEntiretree = () => {
-    ReactDOM.render(
-        
-      <React.StrictMode>
-          <BrowserRouter>
-        <App  stateData={store.getState()} dispatch={store.dispatch.bind(store)}  />
-        </BrowserRouter>
-      </React.StrictMode>,
-      document.getElementById('root')
-    );
-    }
+  ReactDOM.render(
+      <BrowserRouter>
+        <Provider store={store}>
+          <App store={store} />
+        </Provider>
+      </BrowserRouter>,
+    document.getElementById('root')
+  );
+}
 
 rerenderEntiretree(store.getState());
 
-store.subscribe(rerenderEntiretree);
+store.subscribe(() => {
+  rerenderEntiretree()
+});
 
 
 //addPost('yooooooo');

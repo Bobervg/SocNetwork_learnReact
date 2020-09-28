@@ -3,20 +3,21 @@ import './App.css';
 import Header from './components/Header/Header'
 import Navbar from './components/Navbar/Navbar'
 import Profile from './components/Profile/Profile'
-import Dialogs from './components/Dialogs/Dialogs'
 import News from './components/News/News'
 import Music from './components/Music/Music'
 import Settings from './components/Settings/Settings'
 import { Route, BrowserRouter } from 'react-router-dom';
+import DialogsContainer from './components/Dialogs/DialogsContainer'
+import store from './Redux/redux-store';
 
 const App = (props) => {
   return (
     <div className='app-wrapper'>
       <Header />
-      <Navbar sidebarData={props.stateData.sidebarData} />
+      <Navbar sidebarData={props.store.getState().sidebarData} />
       <div className='app-wrapper-content'>
-        <Route path='/profile' render={() => <Profile  postsPageData={props.stateData.postsPageData} dispatch={props.dispatch}/>} />
-        <Route path='/dialogs' render={() => <Dialogs dialogsPageData={props.stateData.dialogsPageData} dispatch={props.dispatch} />} />
+        <Route path='/profile' render={() => <Profile  store={store}/>} />
+        <Route path='/dialogs' render={() => <DialogsContainer store={store} />} />
         <Route path='/news' render={() => <News />} />
         <Route path='/music' render={() => <Music />} />
         <Route path='/settings' render={() => <Settings />} />
