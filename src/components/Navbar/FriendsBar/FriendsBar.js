@@ -5,7 +5,7 @@ import Friend from './Friends/Friend';
 const FriendsBar = (props) => {
     let bestFriends = props.bestFriendsData.map((friend) => {
         return (
-            <Friend name={friend.name} id={friend.id} />
+            <Friend name={friend.name} id={friend.id} key={friend.id} />
         )
     }
     );

@@ -20,24 +20,4 @@ let mapDispatchToProps = (dispatch) => {
 const DialogsContainter = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
 
 
-
-// const DialogsContainter = (props) => {
-
-//     const dialogsPageData = props.store.getState().dialogsPageData
-
-//     const addMessage = () => {
-//         props.store.dispatch(addMessageActionCreator())
-//     };
-
-//     const updateNewMessage = (text) => {
-//         props.store.dispatch(updateNewMessageActionCreator(text))
-//     }
-
-//     const newMessageData = props.store.getState().dialogsPageData.newMessageData
-
-
-//     return (
-//         <Dialogs updateNewMessage={updateNewMessage} addMessage={addMessage} newMessageData={newMessageData} dialogsPageData={dialogsPageData} />
-//     )
-// }
 export default DialogsContainter;

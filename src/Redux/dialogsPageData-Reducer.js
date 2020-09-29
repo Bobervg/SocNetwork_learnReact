@@ -25,12 +25,16 @@ const dialogsPageDataReducer = (state=initialState, action) => {
                 id: idLengthArray,
                 message: state.newMessageData
             }
-            state.messagesData.push(newMessage)
-            state.newMessageData = ''
-            return state
+            return {
+                ...state,
+                messagesData: [...state.messagesData, newMessage],
+                newMessageData: ''
+            }
         }
         case 'UPDATE-NEW-MESSAGE': {
-            state.newMessageData = action.newText
+            return {...state,
+                newMessageData: action.newText
+            }
         }
         default:
             return state

@@ -17,13 +17,17 @@ const postsPageDataReducer = (state = initialState, action) => {
                 message: state.newpostPageData,
                 likecount: 0
             }
-            state.postPageData.push(newPost)
-            state.newpostPageData = ''
-            return state
+            return {
+                ...state,
+                postPageData: [...state.postPageData, newPost],
+                newpostPageData: ''
+            }
         }
         case 'UPDATE-NEW-POST': {
-            state.newpostPageData = action.newText
-            return state
+            return {
+                ...state,
+                newpostPageData: action.newText
+            }
         }
         default:
             return state;

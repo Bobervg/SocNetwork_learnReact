@@ -24,6 +24,10 @@ const Navbar = (props) => {
           <img srv='https://upload.wikimedia.org/wikipedia/commons/6/6d/Windows_Settings_app_icon.png'></img>
           <NavLink activeClassName={styles.activeLink} to={'/Settings'}>Settings</NavLink>
         </div>
+        <div>
+          <img srv='https://upload.wikimedia.org/wikipedia/commons/6/6d/Windows_Settings_app_icon.png'></img>
+          <NavLink activeClassName={styles.activeLink} to={'/Users'}>Users</NavLink>
+        </div>
       </div>
       <div>
         <FriendsBar bestFriendsData={props.sidebarData.bestFriendsData} />

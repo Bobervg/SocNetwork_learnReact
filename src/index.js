@@ -7,7 +7,7 @@ import store from './Redux/redux-store';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-let rerenderEntiretree = () => {
+
   ReactDOM.render(
       <BrowserRouter>
         <Provider store={store}>
@@ -16,13 +16,7 @@ let rerenderEntiretree = () => {
       </BrowserRouter>,
     document.getElementById('root')
   );
-}
 
-rerenderEntiretree(store.getState());
-
-store.subscribe(() => {
-  rerenderEntiretree()
-});
 
 
 //addPost('yooooooo');

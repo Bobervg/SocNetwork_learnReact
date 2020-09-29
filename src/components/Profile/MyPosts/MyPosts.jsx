@@ -7,7 +7,7 @@ import Post from './Post/Post.jsx';
 const MyPosts = (props) => {
 
     let postsElements = props.postsPageData.postPageData.map((post) => {
-        return <Post message={post.message} likecount={post.likecount} />
+        return <Post message={post.message} likecount={post.likecount} key={post.id} />
     }
     );
     
