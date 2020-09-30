@@ -3,13 +3,13 @@ import './App.css';
 import Header from './components/Header/Header'
 import Navbar from './components/Navbar/Navbar'
 import Profile from './components/Profile/Profile'
-import News from './components/News/News'
 import Music from './components/Music/Music'
 import Settings from './components/Settings/Settings'
 import { Route, BrowserRouter } from 'react-router-dom';
 import DialogsContainer from './components/Dialogs/DialogsContainer'
 import UsersContainer from './components/Users/UsersContainer'
 import store from './Redux/redux-store';
+import NewsContainer from './components/News/NewsContainer'
 
 const App = (props) => {
   return (
@@ -19,7 +19,7 @@ const App = (props) => {
       <div className='app-wrapper-content'>
         <Route path='/profile' render={() => <Profile  store={store}/>} />
         <Route path='/dialogs' render={() => <DialogsContainer store={store} />} />
-        <Route path='/news' render={() => <News />} />
+        <Route path='/news' render={() => <NewsContainer />} />
         <Route path='/music' render={() => <Music />} />
         <Route path='/settings' render={() => <Settings />} />
         <Route path='/users' render={() => <UsersContainer />} />
