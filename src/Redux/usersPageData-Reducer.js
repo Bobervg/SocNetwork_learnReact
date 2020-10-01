@@ -1,11 +1,9 @@
 
 let initialState = {
-    usersData: [
-        // { id: 1, followed: true, avatar:{} , name: 'Dmitry K.', status: 'Hey yo', location: {contry: 'Belarus', city: 'Grodno'} },
-        // { id: 2, followed: false, avatar:{} , name: 'Svetlana D.', status: 'lovely', location: {contry: 'USA', city: 'Manhattan'} },
-        // { id: 3, followed: false, avatar:{} , name: 'Sergey S.', status: 'subscribe pls', location: {contry: 'Bulgaria', city: 'Bulg'} },
-        // { id: 4, followed: true, avatar:{} , name: 'Andrew T.', status: 'dunno', location: {contry: 'Russia', city: 'Moscow'} }
-    ]
+    usersData: [],
+    pageSize: 100,
+    totalUsersCount: 20,
+    currentPage: 1
 }
 
 
@@ -36,7 +34,19 @@ const usersPageDataReducer = (state = initialState, action) => {
         case 'SET_USERS': {
             return {
                 ...state, 
-                usersData: [...state.usersData, ...action.users]
+                usersData: action.users
+            }
+        }
+        case 'SET_PAGE': {
+            return {
+                ...state, 
+                currentPage: action.currentPage
+            }
+        }
+        case 'SET_TOTALCOUNT': {
+            return {
+                ...state, 
+                totalUsersCount: action.totalCount
             }
         }
         default:
@@ -49,5 +59,9 @@ export const followActionCreator = (userId) => ({ type: 'FOLLOW', userId })
 export const unFollowActionCreator = (userId) => ({ type: 'UNFOLLOW', userId })
 
 export const setUsersActionCreator = (users) => ({ type: 'SET_USERS', users })
+
+export const setCurrentPageActionCreator = (currentPage) => ({ type: 'SET_PAGE', currentPage })
+
+export const setTotalUsersCountActionCreator = (totalCount) => ({ type: 'SET_TOTALCOUNT', totalCount })
 
 export default usersPageDataReducer;

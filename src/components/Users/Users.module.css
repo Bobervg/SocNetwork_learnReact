@@ -62,3 +62,7 @@
     border-radius: 5px;
     width: 100px;
 }
+
+.activePage{
+    font-size: large;
+}
