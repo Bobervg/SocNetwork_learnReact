@@ -5,8 +5,7 @@ import Post from './Post/Post.jsx';
 
 
 const MyPosts = (props) => {
-
-    let postsElements = props.postsPageData.postPageData.map((post) => {
+    let postsElements = props.postsPageData.profilePageData.map((post) => {
         return <Post message={post.message} likecount={post.likecount} key={post.id} />
     }
     );
@@ -24,7 +23,7 @@ const MyPosts = (props) => {
             <div><h3>Myposts</h3></div>
             <div className={styles.postbox}>
                 <div>
-                    <textarea onChange={changeNewPost} className={styles.textarea} value={props.postsPageData.newpostPageData} placeholder='Введите сообщение'/>
+                    <textarea onChange={changeNewPost} className={styles.textarea} value={props.postsPageData.newpostProfilePageData} placeholder='Введите сообщение'/>
                 </div>
                 <div>
                     <button onClick={addPost}>Add Post</button>

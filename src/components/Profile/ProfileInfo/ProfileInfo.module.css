@@ -7,3 +7,7 @@
     width: 150px;
     height: 150px;
   }
+.contacts {
+  display: flex;
+  flex-direction: column;
+}

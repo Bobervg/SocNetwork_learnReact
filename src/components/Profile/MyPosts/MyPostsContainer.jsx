@@ -1,12 +1,12 @@
 import React from 'react';
-import { addPostActionCreator, onChangeNewPostActionCreator } from '../../../Redux/postsPageData-Reducer'
+import { addPostActionCreator, onChangeNewPostActionCreator } from '../../../Redux/profilePageData-Reducer'
 import MyPosts from './MyPosts'
 import {connect} from 'react-redux'
 
 
 let mapStateToProps = (state) => {
     return {
-        postsPageData: state.postsPageData
+        postsPageData: state.profilePageData
     }
 } 
 let mapDispatchToProps = (dispatch) => {
@@ -19,22 +19,4 @@ let mapDispatchToProps = (dispatch) => {
 const MyPostsContainer = connect(mapStateToProps,mapDispatchToProps)(MyPosts);
 
 
-
-// const MyPostsContainer = (props) => {
-    
-    
-//     let store = props.store.getState().postsPageData
-
-    
-//     const onAddPost = () => {
-//         props.store.dispatch (addPostActionCreator ())
-//     }
-//     const onChangeNewPost = (text) => {
-//         props.store.dispatch (onChangeNewPostActionCreator(text))
-//     }
-
-//     return (
-//         <MyPosts addPost={onAddPost} ChangeNewPost={onChangeNewPost} postsPageData={store}/>
-//     )
-// }
 export default MyPostsContainer;

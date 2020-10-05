@@ -1,9 +1,10 @@
 
 let initialState = {
     usersData: [],
-    pageSize: 100,
+    pageSize: 50,
     totalUsersCount: 20,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: false
 }
 
 
@@ -49,19 +50,27 @@ const usersPageDataReducer = (state = initialState, action) => {
                 totalUsersCount: action.totalCount
             }
         }
+        case 'TOGGLE_ISFETCHING': {
+            return {
+                ...state, 
+                isFetching: action.isFetching
+            }
+        }
         default:
             return state;
     }
 }
 
-export const followActionCreator = (userId) => ({ type: 'FOLLOW', userId })
+export const follow = (userId) => ({ type: 'FOLLOW', userId })
 
-export const unFollowActionCreator = (userId) => ({ type: 'UNFOLLOW', userId })
+export const unFollow = (userId) => ({ type: 'UNFOLLOW', userId })
 
-export const setUsersActionCreator = (users) => ({ type: 'SET_USERS', users })
+export const setUsers = (users) => ({ type: 'SET_USERS', users })
 
-export const setCurrentPageActionCreator = (currentPage) => ({ type: 'SET_PAGE', currentPage })
+export const setCurrentPage = (currentPage) => ({ type: 'SET_PAGE', currentPage })
 
-export const setTotalUsersCountActionCreator = (totalCount) => ({ type: 'SET_TOTALCOUNT', totalCount })
+export const setTotalUsersCount = (totalCount) => ({ type: 'SET_TOTALCOUNT', totalCount })
+
+export const toggleIsFetching = (isFetching) => ( { type: 'TOGGLE_ISFETCHING', isFetching } )
 
 export default usersPageDataReducer;
