@@ -1,33 +1,25 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { unFollow, follow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching } from '../../Redux/usersPageData-Reducer'
-import * as axios from 'axios'
+import { unFollow, follow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching, buttonDisable } from '../../Redux/usersPageData-Reducer'
 import Users from './Users'
 import Preloader from './../common/Preloader'
-
+import { setUsersThunkCreator, followTC, unFollowTC } from './../../Redux/usersPageData-Reducer';
 
 
 class UsersComponent extends React.Component {
 
     componentDidMount = () => {
-        this.props.toggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,{
-            withCredentials: true
-        }).then(response => {
-            this.props.setUsers(response.data.items)
-            this.props.setTotalUsersCount(response.data.totalCount)
-            this.props.toggleIsFetching(false)
-        })
+        this.props.setUsers(this.props.currentPage, this.props.pageSize)
     }
     onClickPage = (pageNumber) => {
-        this.props.toggleIsFetching(true)
-        this.props.setPage(pageNumber)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`, {
-            withCredentials: true
-        }).then(response => {
-            this.props.setUsers(response.data.items)
-            this.props.toggleIsFetching(false)
-        })
+        this.props.setUsers(pageNumber, this.props.pageSize)
+
+        // this.props.toggleIsFetching(true)
+        // this.props.setPage(pageNumber)
+        // API.getUsers(pageNumber, this.props.pageSize).then(response => {
+        //     this.props.setUsers(response.items)
+        //     this.props.toggleIsFetching(false)
+        // })
     }
 
     render() {
@@ -41,6 +33,7 @@ class UsersComponent extends React.Component {
                 unfollowButton={this.props.unfollowButton}
                 followButton={this.props.followButton}
                 onClickPage={this.onClickPage}
+                isButtonDisabled = {this.props.isButtonDisabled}
             />
             </>
         )
@@ -54,7 +47,8 @@ let mapStatetoProps = (state) => {
         pageSize: state.usersPageData.pageSize,
         totalUsersCount: state.usersPageData.totalUsersCount,
         currentPage: state.usersPageData.currentPage,
-        isFetching: state.usersPageData.isFetching
+        isFetching: state.usersPageData.isFetching,
+        isButtonDisabled: state.usersPageData.isButtonDisabled
     }
 }
 
@@ -82,10 +76,9 @@ let mapStatetoProps = (state) => {
 // }
 
 export default connect(mapStatetoProps, {
-    followButton: follow,
-    unfollowButton: unFollow,
-    setUsers: setUsers,
+    followButton: followTC,
+    unfollowButton: unFollowTC,
     setPage: setCurrentPage,
-    setTotalUsersCount: setTotalUsersCount,
-    toggleIsFetching: toggleIsFetching
+    buttonDisable: buttonDisable,
+    setUsers: setUsersThunkCreator
     })(UsersComponent);

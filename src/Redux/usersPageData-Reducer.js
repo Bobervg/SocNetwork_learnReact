@@ -1,32 +1,35 @@
 
+import { API } from './../api/api';
 let initialState = {
     usersData: [],
     pageSize: 50,
     totalUsersCount: 20,
     currentPage: 1,
-    isFetching: false
+    isFetching: false,
+    isButtonDisabled: []
+
 }
 
 
 const usersPageDataReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'FOLLOW': {
-            return{
+            return {
                 ...state,
                 usersData: state.usersData.map(u => {
                     if (u.id === action.userId) {
-                        return {...u, followed:true}
+                        return { ...u, followed: true }
                     }
                     return u;
                 })
             }
         }
-        case 'UNFOLLOW' : {
-            return{
+        case 'UNFOLLOW': {
+            return {
                 ...state,
                 usersData: state.usersData.map(u => {
                     if (u.id === action.userId) {
-                        return { ...u, followed: false}
+                        return { ...u, followed: false }
                     }
                     return u;
                 })
@@ -34,26 +37,33 @@ const usersPageDataReducer = (state = initialState, action) => {
         }
         case 'SET_USERS': {
             return {
-                ...state, 
+                ...state,
                 usersData: action.users
             }
         }
         case 'SET_PAGE': {
             return {
-                ...state, 
+                ...state,
                 currentPage: action.currentPage
             }
         }
         case 'SET_TOTALCOUNT': {
             return {
-                ...state, 
+                ...state,
                 totalUsersCount: action.totalCount
             }
         }
         case 'TOGGLE_ISFETCHING': {
             return {
-                ...state, 
+                ...state,
                 isFetching: action.isFetching
+            }
+        }
+        case 'BUTTON-DISABLE': {
+            return {
+                ...state,
+                isButtonDisabled: action.toogle === true ? [...state.isButtonDisabled, action.userId]
+                    : state.isButtonDisabled.filter(id => id != action.userId)
             }
         }
         default:
@@ -61,9 +71,43 @@ const usersPageDataReducer = (state = initialState, action) => {
     }
 }
 
-export const follow = (userId) => ({ type: 'FOLLOW', userId })
+export const setUsersThunkCreator = (currentPage, pageSize) => {
+    return (dispatch) => {
+        dispatch(toggleIsFetching(true))
+        API.getUsers(currentPage, pageSize).then(response => {
+            dispatch(setUsers(response.items))
+            dispatch(setTotalUsersCount(response.totalCount))
+            dispatch(toggleIsFetching(false))
+        })
+    }
+}
 
-export const unFollow = (userId) => ({ type: 'UNFOLLOW', userId })
+
+export const unFollowTC = (userId) => {
+    return (dispatch) => {
+        dispatch(buttonDisable(true, userId))
+        API.getUnFollow(userId)
+            .then(response => {
+                if (response.resultCode === 0) { dispatch(setUnFollow(userId)) }
+                dispatch(buttonDisable(false, userId))
+            })
+    }
+}
+
+export const followTC = (userId) => {
+    return (dispatch) => {
+        dispatch(buttonDisable(true, userId))
+        API.getFollow(userId)
+            .then(response => {
+                if (response.resultCode === 0) { dispatch(setFollow(userId)) }
+                dispatch(buttonDisable(false, userId))
+            })
+    }
+}
+
+export const setFollow = (userId) => ({ type: 'FOLLOW', userId })
+
+export const setUnFollow = (userId) => ({ type: 'UNFOLLOW', userId })
 
 export const setUsers = (users) => ({ type: 'SET_USERS', users })
 
@@ -71,6 +115,8 @@ export const setCurrentPage = (currentPage) => ({ type: 'SET_PAGE', currentPage 
 
 export const setTotalUsersCount = (totalCount) => ({ type: 'SET_TOTALCOUNT', totalCount })
 
-export const toggleIsFetching = (isFetching) => ( { type: 'TOGGLE_ISFETCHING', isFetching } )
+export const toggleIsFetching = (isFetching) => ({ type: 'TOGGLE_ISFETCHING', isFetching })
+
+export const buttonDisable = (toggle, userId) => ({ type: 'BUTTON-DISABLE', toggle, userId })
 
 export default usersPageDataReducer;

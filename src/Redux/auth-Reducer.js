@@ -1,4 +1,5 @@
 
+import { API } from './../api/api';
 let initialState = {
     data: {
         id: null,
@@ -24,6 +25,14 @@ const authDataReducer = (state = initialState, action) => {
         }
         default:
             return state;
+    }
+}
+
+export const getAuthDataTC = () => {
+    return (dispatch) => {
+        API.authMe().then(response => {
+        dispatch(setAuthData(response.data))
+    })
     }
 }
 

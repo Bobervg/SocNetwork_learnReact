@@ -1,4 +1,5 @@
 
+import { API } from './../api/api';
 let initialState = {
     newpostProfilePageData: '',
     profilePageData: [
@@ -40,6 +41,29 @@ const profilePageDataReducer = (state = initialState, action) => {
             return state;
     }
 }
+
+export const getUserProfileTC = (userId) => {
+    return (dispatch) => {
+    API.getProfile(userId)
+    .then(response => {
+        dispatch(setUserProfile(response.data))
+    })
+    }
+}
+
+// export const followTC = (userId) => {
+//     return (dispatch) => {
+//         dispatch(buttonDisable(true, userId))
+//         API.getFollow(userId)
+//             .then(response => {
+//                 if (response.resultCode === 0) { dispatch(setFollow(userId)) }
+//                 dispatch(buttonDisable(false, userId))
+//             })
+//     }
+// }
+
+
+
 
 export const addPostActionCreator = () => {
     return { type: 'ADD-POST' }

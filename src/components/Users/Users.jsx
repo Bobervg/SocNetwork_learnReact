@@ -2,7 +2,6 @@ import React from 'react'
 import styles from './Users.module.css'
 import userAvatar from './../../assets/UsersPage/userAvatar.png'
 import { NavLink } from 'react-router-dom'
-import Axios from 'axios'
 
 
 const Users = (props) => {
@@ -28,30 +27,16 @@ const Users = (props) => {
                             </NavLink>
                         </div>
                         <div className={styles.followButton}>
-
                             {u.followed ?
-                                <button onClick={() => {
-                                    Axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-                                        withCredentials: true,
-                                        headers: {
-                                            'API-KEY': 'f2fbe505-fd97-4af2-841a-d777aed30b39'
-                                        }})
-                                    .then(response => {
-                                        if (response.data.resultCode === 0) {props.unfollowButton(u.id)}
-                                    })
-                                }
-                            }>Unfollow</button>
-                                : <button onClick={() => {
-                                    Axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
-                                        withCredentials: true,
-                                        headers: {
-                                            'API-KEY': 'f2fbe505-fd97-4af2-841a-d777aed30b39'
-                                        }})
-                                    .then(response => {
-                                        if (response.data.resultCode === 0) {props.followButton(u.id)}
-                                    })
+                                <button disabled={props.isButtonDisabled.some(id => id === u.id)} onClick={() => {
+                                    props.unfollowButton(u.id)
+                                
+                                }}
+                                >Unfollow</button>
+                                : <button disabled={props.isButtonDisabled.some(id => id === u.id)} onClick={() => {
+                                    props.followButton(u.id)
+                            
                                 }}>Follow</button>}
-
                         </div>
                     </div>
                     <div className={styles.namestatus}>
