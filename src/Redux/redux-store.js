@@ -4,13 +4,15 @@ import profilePageDataReducer from './profilePageData-Reducer'
 import dialogsPageDataReducer from './dialogsPageData-Reducer'
 import usersPageDataReducer from "./usersPageData-Reducer"
 import newsPageDataReducer from './newsPageData-Reducer'
+import authDataReducer from "./auth-Reducer";
 
 let reducersBunch = combineReducers({
     sidebarData: sidebarDataReducer,
     profilePageData: profilePageDataReducer,
     dialogsPageData: dialogsPageDataReducer,
     usersPageData: usersPageDataReducer,
-    newsPageData: newsPageDataReducer
+    newsPageData: newsPageDataReducer,
+    authData: authDataReducer
 });
 
 let store = createStore (reducersBunch)
