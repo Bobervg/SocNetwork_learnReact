@@ -1,9 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import {compose}  from 'redux'
 import { unFollow, follow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching, buttonDisable } from '../../Redux/usersPageData-Reducer'
 import Users from './Users'
 import Preloader from './../common/Preloader'
 import { setUsersThunkCreator, followTC, unFollowTC } from './../../Redux/usersPageData-Reducer';
+import { withAuthRedirect } from './../../hoc/withAuthRedirect';
 
 
 class UsersComponent extends React.Component {
@@ -52,6 +54,18 @@ let mapStatetoProps = (state) => {
     }
 }
 
+export default compose (
+    withAuthRedirect,
+    (connect(mapStatetoProps, {
+        followButton: followTC,
+        unfollowButton: unFollowTC,
+        setPage: setCurrentPage,
+        buttonDisable: buttonDisable,
+        setUsers: setUsersThunkCreator
+        }))
+) (UsersComponent)
+
+
 // let mapDispatchToProps = (dispatch) => {
 //     return {
 //         followButton: (userId) => {
@@ -75,10 +89,10 @@ let mapStatetoProps = (state) => {
 //     }
 // }
 
-export default connect(mapStatetoProps, {
-    followButton: followTC,
-    unfollowButton: unFollowTC,
-    setPage: setCurrentPage,
-    buttonDisable: buttonDisable,
-    setUsers: setUsersThunkCreator
-    })(UsersComponent);
+// export default withAuthRedirect(connect(mapStatetoProps, {
+//     followButton: followTC,
+//     unfollowButton: unFollowTC,
+//     setPage: setCurrentPage,
+//     buttonDisable: buttonDisable,
+//     setUsers: setUsersThunkCreator
+//     })(UsersComponent));

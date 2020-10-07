@@ -31,7 +31,8 @@ const authDataReducer = (state = initialState, action) => {
 export const getAuthDataTC = () => {
     return (dispatch) => {
         API.authMe().then(response => {
-        dispatch(setAuthData(response.data))
+            if (response.data.resultCode===0) {
+        dispatch(setAuthData(response.data))}
     })
     }
 }

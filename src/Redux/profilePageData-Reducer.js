@@ -5,7 +5,8 @@ let initialState = {
     profilePageData: [
         { id: 1, message: 'first post', likecount: 15 },
         { id: 2, message: 'second post', likecount: 6 }],
-    userProfile: null
+    userProfile: null,
+    status: ''
 
 }
 
@@ -37,6 +38,12 @@ const profilePageDataReducer = (state = initialState, action) => {
                 userProfile: action.profile
             }
         }
+        case 'SET-STATUS': {
+            return {
+                ...state,
+                status: action.status
+            }
+        }
         default:
             return state;
     }
@@ -47,6 +54,23 @@ export const getUserProfileTC = (userId) => {
     API.getProfile(userId)
     .then(response => {
         dispatch(setUserProfile(response.data))
+    })
+    }
+}
+export const getProfileStatusTC = (userId) => {
+    return (dispatch) => {
+    API.getProfileStatus(userId)
+    .then(response => {
+        dispatch(setProfileStatus(response.data))
+    })
+    }
+}
+export const updateProfileStatusTC = (status) => {
+    return (dispatch) => {
+    API.updateProfileStatus(status)
+    .then(response => {
+        if(response.data.resultCode===0) {
+        dispatch(setProfileStatus(status))}
     })
     }
 }
@@ -61,9 +85,9 @@ export const getUserProfileTC = (userId) => {
 //             })
 //     }
 // }
-
-
-
+export const setProfileStatus = (status) => {
+    return { type: 'SET-STATUS' , status: status}
+}
 
 export const addPostActionCreator = () => {
     return { type: 'ADD-POST' }

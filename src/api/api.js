@@ -27,8 +27,12 @@ export const API = {
     },
     getProfile (id) {
         return instance.get(`/profile/${id}`)
-        
-        
+    },
+    getProfileStatus (id) {
+        return instance.get(`/profile/status/${id}`)
+    },
+    updateProfileStatus (status) {
+        return instance.put(`/profile/status/`, {status:status})
     },
     authMe () {
         return instance.get(`auth/me`)

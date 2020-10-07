@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './ProfileInfo.module.css';
 import Preloader from './../../common/Preloader'
-
+import ProfileStatus from './ProfileStatus.jsx'
 
 const ProfileInfo = (props) => {
 
@@ -20,6 +20,9 @@ const ProfileInfo = (props) => {
           ava+desc
       <div>
             {props.userProfile.fullName}
+          </div>
+          <div>
+            <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
           </div>
           <div>
             <img src={props.userProfile.photos.large}></img>
