@@ -17,19 +17,12 @@ const profilePageDataReducer = (state = initialState, action) => {
             let lengthArray = state.profilePageData.length + 1
             let newPost = {
                 id: lengthArray,
-                message: state.newpostProfilePageData,
+                message: action.value,
                 likecount: 0
             }
             return {
                 ...state,
                 profilePageData: [...state.profilePageData, newPost],
-                newpostProfilePageData: ''
-            }
-        }
-        case 'UPDATE-NEW-POST': {
-            return {
-                ...state,
-                newpostProfilePageData: action.newText
             }
         }
         case 'SET-USER-PROFILE': {
@@ -89,11 +82,8 @@ export const setProfileStatus = (status) => {
     return { type: 'SET-STATUS' , status: status}
 }
 
-export const addPostActionCreator = () => {
-    return { type: 'ADD-POST' }
-}
-export const onChangeNewPostActionCreator = (text) => {
-    return { type: 'UPDATE-NEW-POST', newText: text }
+export const addPostActionCreator = (value) => {
+    return { type: 'ADD-POST', value }
 }
 export const setUserProfile = (profile) => ( {type: 'SET-USER-PROFILE', profile })
 

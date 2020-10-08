@@ -7,15 +7,13 @@ import { compose } from 'redux';
 
 let mapStateToProps = (state) => {
     return {
-        newMessageData: state.dialogsPageData.newMessageData,
         dialogsPageData: state.dialogsPageData,
     }
 }
 
 let mapDispatchToProps = (dispatch) => {
     return {
-        updateNewMessage: (text) => dispatch(updateNewMessageActionCreator(text)),
-        addMessage: () => dispatch(addMessageActionCreator())
+        addMessage: (value) => dispatch(addMessageActionCreator(value))
 }
 }
 

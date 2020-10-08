@@ -13,8 +13,7 @@ let initialState = {
             { id: 2, message: 'How are you' },
             { id: 3, message: 'Yo' },
             { id: 4, message: 'Yo' },
-            { id: 5, message: 'Hi' }],
-        newMessageData: ''
+            { id: 5, message: 'Hi' }]
     }
 
 const dialogsPageDataReducer = (state=initialState, action) => {
@@ -23,17 +22,11 @@ const dialogsPageDataReducer = (state=initialState, action) => {
             let idLengthArray = state.messagesData.length + 1
             let newMessage = {
                 id: idLengthArray,
-                message: state.newMessageData
+                message: action.value
             }
             return {
                 ...state,
                 messagesData: [...state.messagesData, newMessage],
-                newMessageData: ''
-            }
-        }
-        case 'UPDATE-NEW-MESSAGE': {
-            return {...state,
-                newMessageData: action.newText
             }
         }
         default:
@@ -41,11 +34,8 @@ const dialogsPageDataReducer = (state=initialState, action) => {
     }
 }
 
-export const addMessageActionCreator = () => {
-    return { type: 'ADD-MESSAGE' }
-}
-export const updateNewMessageActionCreator = (text) => {
-    return { type: 'UPDATE-NEW-MESSAGE', newText: text }
+export const addMessageActionCreator = (value) => {
+    return { type: 'ADD-MESSAGE', value }
 }
 
 export default dialogsPageDataReducer;

@@ -2,7 +2,6 @@ import React from 'react';
 import Header from './Header';
 import { connect } from 'react-redux';
 import { getAuthDataTC } from '../../Redux/auth-Reducer';
-import { API } from './../../api/api';
 
 
 class HeaderContainer extends React.Component {
@@ -21,8 +20,9 @@ class HeaderContainer extends React.Component {
 }
 
 let mapStateToProps = (state) => ({
-  userdata: state.authData.data,
-  message: state.authData.messages,
+  id: state.authData.id,
+  email: state.authData.email,
+  login: state.authData.login,
   isLogged: state.authData.isLogged
 
 })

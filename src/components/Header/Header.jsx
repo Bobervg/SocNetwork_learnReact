@@ -11,13 +11,13 @@ const Header = (props) => {
         {props.isLogged ?
         <div>
           <div>
-            {props.userdata.login}
+          {props.id}
           </div>
           <div>
-            {props.userdata.email}
+            {props.email}
           </div>
           <div>
-            {props.userdata.id}
+          {props.login}
           </div>
           </div> 
               : <NavLink to='/login'>Login</NavLink>}
