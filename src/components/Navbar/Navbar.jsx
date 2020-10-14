@@ -1,35 +1,45 @@
 import React from 'react';
 import styles from './Navbar.module.css';
 import { NavLink } from 'react-router-dom';
-import FriendsBar from './FriendsBar/FriendsBar';
+import FriendsBar from './FriendsBar/FriendsBar'; 
+import musicIcon from './../../assets/NavBar/music.png'
+import settingsIcon from './../../assets/NavBar/settingsIcon.png'
+import usersIcon from './../../assets/NavBar/usersIcon.png'
+import newsIcon from './../../assets/NavBar/newsIcon.png'
+import messagesIcon from './../../assets/NavBar/messagesIcon.png'
+import homeIcon from './../../assets/NavBar/homeIcon.png'
 
 
 const Navbar = (props) => {
   return (
-    <div>
-      <div className={styles.navbar}>
+    <div className={styles.navbar}>
+      <div className={styles.menubar}>
         <div>
+        <img src={homeIcon}></img>
           <NavLink activeClassName={styles.activeLink} to='/Profile'>Profile</NavLink>
         </div>
         <div>
+        <img src={messagesIcon}></img>
           <NavLink activeClassName={styles.activeLink} to='/Dialogs'>Messages</NavLink>
         </div>
         <div>
+        <img src={newsIcon}></img>
           <NavLink activeClassName={styles.activeLink} to={'/News'}>News</NavLink>
         </div>
         <div>
+        <img src={musicIcon}></img>
           <NavLink activeClassName={styles.activeLink} to={'/Music'}>Music</NavLink>
         </div>
         <div>
-          <img srv='https://upload.wikimedia.org/wikipedia/commons/6/6d/Windows_Settings_app_icon.png'></img>
+        <img src={settingsIcon}></img>
           <NavLink activeClassName={styles.activeLink} to={'/Settings'}>Settings</NavLink>
         </div>
         <div>
-          <img srv='https://upload.wikimedia.org/wikipedia/commons/6/6d/Windows_Settings_app_icon.png'></img>
+          <img src={usersIcon}></img>
           <NavLink activeClassName={styles.activeLink} to={'/Users'}>Users</NavLink>
         </div>
       </div>
-      <div>
+      <div className={styles.friendsBar}>
         <FriendsBar bestFriendsData={props.sidebarData.bestFriendsData} />
       </div>
     </div>

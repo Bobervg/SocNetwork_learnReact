@@ -1,12 +1,16 @@
 import React from 'react';
 import styles from './Header.module.css'
 import { NavLink } from 'react-router-dom';
+import headerLogoIcon from './../../assets/headerLogoIcon.png'
 
 
 const Header = (props) => {
+  const logOutButton = () => {
+    props.logout()
+  }
   return (
     <header className={styles.header}>
-      <img src="https://w7.pngwing.com/pngs/813/735/png-transparent-bird-of-prey-logo-beak-desktop-bird-animals-computer-logo.png"></img>
+      <img src={headerLogoIcon}></img>
       <div className={styles.loginbar}>
         {props.isLogged ?
         <div>
@@ -18,6 +22,9 @@ const Header = (props) => {
           </div>
           <div>
           {props.login}
+          </div>
+          <div>
+            <button onClick={logOutButton}> LogOut</button>
           </div>
           </div> 
               : <NavLink to='/login'>Login</NavLink>}

@@ -1,3 +1,6 @@
+.app{
+  background-color: #ecf0f1;  
+}
 .app-wrapper {
   float: center;
   margin: auto;
@@ -6,12 +9,12 @@
   grid-template-areas:
     "header  header"
     "navbar  content";
-  width: 75%;
+  width: 70%;
   height: auto;
   grid-template-rows: 120px 1fr;
   grid-template-columns: 2fr 10fr;
   /* grid-gap: 10px; */
-  background-color: #ecf0f1;
+  
 }
 
 .app-wrapper-content {
@@ -19,5 +22,6 @@
   background-color: white;
   padding: 20px;
   margin: 15px;
+  border-radius: 5px;
 }
 

@@ -13,7 +13,8 @@ import Login from './components/Login/Login';
 
 const App = (props) => {
   return (
-    <div className='app-wrapper'>
+    <div className='app'>
+      <div className='app-wrapper'>
       <HeaderContainer />
       <Navbar sidebarData={props.store.getState().sidebarData} />
       <div className='app-wrapper-content'>
@@ -24,6 +25,7 @@ const App = (props) => {
         <Route path='/settings' render={() => <Settings />} />
         <Route path='/users' render={() => <UsersComponent />} />
         <Route path='/login' render={() => <Login />} />
+      </div>
       </div>
     </div>
   );

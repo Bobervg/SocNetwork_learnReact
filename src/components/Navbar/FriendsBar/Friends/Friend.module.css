@@ -1,7 +1,8 @@
 .friendAvatar img{
     width: 50px;
-    
+    border-radius: 50px;
 }
 .friendAvatar {
-    margin: 20px;
+    font-size: 20px;
+    margin: 10px
 }

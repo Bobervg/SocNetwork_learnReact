@@ -2,6 +2,15 @@ import React from 'react';
 import styles from './ProfileInfo.module.css';
 import Preloader from './../../common/Preloader'
 import ProfileStatus from './ProfileStatus.jsx'
+import vkLogo from './../../../assets/ProfilePage/vkLogo.png'
+import facebookLogo from './../../../assets/ProfilePage/facebookLogo.png'
+import twitterLogo from './../../../assets/ProfilePage/twitterLogo.png'
+import githubLogo from './../../../assets/ProfilePage/githubLogo.png'
+import instLogo from './../../../assets/ProfilePage/instLogo.png'
+import wwwLogo from './../../../assets/ProfilePage/wwwLogo.png'
+import youtubeLogo from './../../../assets/ProfilePage/youtubeLogo.svg'
+
+
 
 const ProfileInfo = (props) => {
 
@@ -39,14 +48,22 @@ const ProfileInfo = (props) => {
             </div>
           </div>
           <div className={styles.contacts}>
-            <span><img src={'facebook logo'}></img>{props.userProfile.contacts.facebook}</span>
-            <span><img src={'website logo'}></img>{props.userProfile.contacts.website}</span>
-            <span><img src={'vk logo'}></img>{props.userProfile.contacts.vk}</span>
-            <span><img src={'twitter logo'}></img>{props.userProfile.contacts.twitter}</span>
-            <span><img src={'instagram logo'}></img>{props.userProfile.contacts.instagram}</span>
-            <span><img src={'youtube logo'}></img> {props.userProfile.contacts.youtube}</span>
-            <span><img src={'github logo'}></img>{props.userProfile.contacts.github}</span>
-            <span><img src={'mainLink logo'}></img>{props.userProfile.contacts.mainLink}</span>
+            <span><img src={facebookLogo}></img>{props.userProfile.contacts.facebook}
+            </span>
+            <span><img src={wwwLogo}></img>{props.userProfile.contacts.website}
+            </span>
+            <span><img src={vkLogo}></img>{props.userProfile.contacts.vk}
+            </span>
+            <span><img src={twitterLogo}></img>{props.userProfile.contacts.twitter}
+            </span>
+            <span><img src={instLogo}></img>{props.userProfile.contacts.instagram}
+            </span>
+            <span><img src={youtubeLogo}></img> {props.userProfile.contacts.youtube}
+            </span>
+            <span><img src={githubLogo}></img>{props.userProfile.contacts.github}
+            </span>
+            <span><img src={'mainLink logo'}></img>{props.userProfile.contacts.mainLink}
+            </span>
           </div>
         </div>
       </div>

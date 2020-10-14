@@ -11,7 +11,7 @@ const FriendsBar = (props) => {
     );
     return (
         <div className={styles.content}>
-            <h2>Friends</h2>
+            <div className={styles.h2}>Friends</div>
             <div className={styles.bestFriendsitem}>
                 {bestFriends}
             </div>
