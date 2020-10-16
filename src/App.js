@@ -5,18 +5,32 @@ import Navbar from './components/Navbar/Navbar'
 import ProfileContainer from './components/Profile/ProfileContainer'
 import Music from './components/Music/Music'
 import Settings from './components/Settings/Settings'
-import { Route, BrowserRouter } from 'react-router-dom';
+import { Route, BrowserRouter, withRouter } from 'react-router-dom';
 import DialogsContainer from './components/Dialogs/DialogsContainer'
 import UsersComponent from './components/Users/UsersComponent'
 import NewsContainer from './components/News/NewsContainer'
 import Login from './components/Login/Login';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { initializedTC } from './Redux/app-Reducer';
+import Preloader from './components/common/Preloader';
 
-const App = (props) => {
+class App extends React.Component {
+
+  componentDidMount () {
+    this.props.setInitialized()
+}
+
+  render() {
+    if(this.props.isInitialized===false) {
+     return <Preloader />
+    } 
+
   return (
     <div className='app'>
       <div className='app-wrapper'>
       <HeaderContainer />
-      <Navbar sidebarData={props.store.getState().sidebarData} />
+      <Navbar sidebarData={this.props.store.getState().sidebarData} />
       <div className='app-wrapper-content'>
         <Route path='/profile:userId?' render={() => <ProfileContainer  />} />
         <Route path='/dialogs' render={() => <DialogsContainer />} />
@@ -30,5 +44,14 @@ const App = (props) => {
     </div>
   );
 }
+}
 
-export default App;
+
+const mapStateToProps = (state) => ({
+  isInitialized: state.appData.initialized
+})
+
+export default compose(
+  withRouter,
+  connect(mapStateToProps,{setInitialized:initializedTC})) (App)
+

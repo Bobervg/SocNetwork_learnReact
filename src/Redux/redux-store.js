@@ -7,6 +7,7 @@ import newsPageDataReducer from './newsPageData-Reducer'
 import authDataReducer from "./auth-Reducer";
 import thunkMiddleWare from 'redux-thunk'
 import { reducer as formReducer } from 'redux-form'
+import appDataReducer from './app-Reducer';
 
 
 let reducersBunch = combineReducers({
@@ -16,7 +17,8 @@ let reducersBunch = combineReducers({
     usersPageData: usersPageDataReducer,
     newsPageData: newsPageDataReducer,
     authData: authDataReducer,
-    form: formReducer
+    form: formReducer,
+    appData: appDataReducer
 });
 
 let store = createStore (reducersBunch, applyMiddleware(thunkMiddleWare))

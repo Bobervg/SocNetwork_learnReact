@@ -55,7 +55,7 @@ let mapStatetoProps = (state) => {
 }
 
 export default compose (
-    withAuthRedirect,
+    //withAuthRedirect,
     (connect(mapStatetoProps, {
         followButton: followTC,
         unfollowButton: unFollowTC,

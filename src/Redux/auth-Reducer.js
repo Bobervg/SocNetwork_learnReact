@@ -1,5 +1,6 @@
 
 import { API } from './../api/api';
+import { stopSubmit } from 'redux-form';
 
 let initialState = {
     id: null,
@@ -26,7 +27,7 @@ export const setAuthData = (id, email, login, isLogged) => ({ type: 'SET_AUTH_DA
 
 export const getAuthDataTC = () => {
     return (dispatch) => {
-        API.authMe().then(response => {
+       return API.authMe().then(response => {
             if (response.data.resultCode===0) {
                 let {id, email, login} = response.data.data
         dispatch(setAuthData(id, email, login, true))}
@@ -37,8 +38,11 @@ export const loginTC = (email, password, rememberMe) => {
     return (dispatch) => {
         API.login(email, password, rememberMe).then(response => {
             if (response.data.resultCode===0) {
-                
         dispatch(getAuthDataTC())}
+            else {
+                let errorMessage = response.data.messages[0]
+                dispatch(stopSubmit('loginForm', {_error:errorMessage}))
+            }
     })
     }
 }

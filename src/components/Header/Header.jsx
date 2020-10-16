@@ -12,23 +12,22 @@ const Header = (props) => {
     <header className={styles.header}>
       <img src={headerLogoIcon}></img>
       <div className={styles.loginbar}>
-        {props.isLogged ?
-        <div>
+        {props.isLogged ? <div>
           <div>
-          {props.id}
+            {props.id}
           </div>
           <div>
             {props.email}
           </div>
           <div>
-          {props.login}
+            {props.login}
           </div>
           <div>
             <button onClick={logOutButton}> LogOut</button>
           </div>
-          </div> 
-              : <NavLink to='/login'>Login</NavLink>}
-              </div>
+                      </div>
+          : <NavLink to='/login'>Login</NavLink>}
+      </div>
     </header>
 
   )

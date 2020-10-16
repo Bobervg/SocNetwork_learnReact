@@ -1,1 +1,6 @@
 
+.errorBox {
+    color: red;
+    border: 1px;
+    font-size: large;
+}
