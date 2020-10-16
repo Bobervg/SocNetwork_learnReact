@@ -6,6 +6,7 @@ import Users from './Users'
 import Preloader from './../common/Preloader'
 import { setUsersThunkCreator, followTC, unFollowTC } from './../../Redux/usersPageData-Reducer';
 import { withAuthRedirect } from './../../hoc/withAuthRedirect';
+import {  getPageSize, getTotalUsersCount, getCurrentPage, getStatusIsFetching, getButtonStatus, getUsersDataSuperSelector } from './../../Redux/selectors/usersPageData-selectors';
 
 
 class UsersComponent extends React.Component {
@@ -45,12 +46,12 @@ class UsersComponent extends React.Component {
 
 let mapStatetoProps = (state) => {
     return {
-        users: state.usersPageData.usersData,
-        pageSize: state.usersPageData.pageSize,
-        totalUsersCount: state.usersPageData.totalUsersCount,
-        currentPage: state.usersPageData.currentPage,
-        isFetching: state.usersPageData.isFetching,
-        isButtonDisabled: state.usersPageData.isButtonDisabled
+        users: getUsersDataSuperSelector(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getStatusIsFetching(state),
+        isButtonDisabled: getButtonStatus(state)
     }
 }
 

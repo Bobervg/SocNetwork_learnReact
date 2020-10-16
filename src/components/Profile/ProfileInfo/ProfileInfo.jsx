@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './ProfileInfo.module.css';
 import Preloader from './../../common/Preloader'
-import ProfileStatus from './ProfileStatus.jsx'
+import ProfileStatusHooks from './ProfileStatusHooks.jsx'
 import vkLogo from './../../../assets/ProfilePage/vkLogo.png'
 import facebookLogo from './../../../assets/ProfilePage/facebookLogo.png'
 import twitterLogo from './../../../assets/ProfilePage/twitterLogo.png'
@@ -31,7 +31,7 @@ const ProfileInfo = (props) => {
             {props.userProfile.fullName}
           </div>
           <div>
-            <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+            <ProfileStatusHooks status={props.status} updateStatus={props.updateStatus}/>
           </div>
           <div>
             <img src={props.userProfile.photos.large}></img>
