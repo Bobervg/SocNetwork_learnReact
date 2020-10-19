@@ -37,6 +37,12 @@ const profilePageDataReducer = (state = initialState, action) => {
                 status: action.status
             }
         }
+        case 'DELETE-POST': {
+            return {
+                ...state,
+                profilePageData: state.profilePageData.filter(p => p.id != action.postId)
+            }
+        }
         default:
             return state;
     }
@@ -67,6 +73,11 @@ export const updateProfileStatusTC = (status) => {
     })
     }
 }
+
+export const deletePostAC = (postId) => {
+    return { type: 'DELETE-POST', postId }
+}
+
 
 // export const followTC = (userId) => {
 //     return (dispatch) => {

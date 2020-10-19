@@ -72,37 +72,32 @@ const usersPageDataReducer = (state = initialState, action) => {
 }
 
 export const setUsersThunkCreator = (currentPage, pageSize) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(toggleIsFetching(true))
         dispatch(setCurrentPage(currentPage))
-        API.getUsers(currentPage, pageSize).then(response => {
-            dispatch(setUsers(response.items))
-            dispatch(setTotalUsersCount(response.totalCount))
-            dispatch(toggleIsFetching(false))
-        })
+        let response = await API.getUsers(currentPage, pageSize)
+        dispatch(setUsers(response.items))
+        dispatch(setTotalUsersCount(response.totalCount))
+        dispatch(toggleIsFetching(false))
     }
 }
 
 
 export const unFollowTC = (userId) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(buttonDisable(true, userId))
-        API.getUnFollow(userId)
-            .then(response => {
-                if (response.resultCode === 0) { dispatch(setUnFollow(userId)) }
-                dispatch(buttonDisable(false, userId))
-            })
+        let response = await API.getUnFollow(userId)
+        if (response.resultCode === 0) { dispatch(setUnFollow(userId)) }
+        dispatch(buttonDisable(false, userId))
     }
 }
 
 export const followTC = (userId) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(buttonDisable(true, userId))
-        API.getFollow(userId)
-            .then(response => {
-                if (response.resultCode === 0) { dispatch(setFollow(userId)) }
-                dispatch(buttonDisable(false, userId))
-            })
+        let response = await API.getFollow(userId)
+        if (response.resultCode === 0) { dispatch(setFollow(userId)) }
+        dispatch(buttonDisable(false, userId))
     }
 }
 

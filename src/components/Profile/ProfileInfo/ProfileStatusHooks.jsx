@@ -1,11 +1,16 @@
 
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 
 
 const ProfileStatusHooks = (props) => {
 
     let [editMode, editModeToggle] = useState(true)
-    let [status, changeStatusText] = useState(props.status)
+    let [status, setStatusText] = useState(props.status)
+
+    useEffect( () => {
+        setStatusText(props.status)
+    }, [props.status] )
 
 const editModeOn = () => {
     editModeToggle(false)
@@ -15,7 +20,7 @@ const editModeOff = () => {
     props.updateStatus(status)
 }
 const onStatusChanged = (e) => {
-    changeStatusText(e.currentTarget.value)
+    setStatusText(e.currentTarget.value)
 }
 
         return (
