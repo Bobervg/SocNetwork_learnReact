@@ -5,7 +5,7 @@ import Navbar from './components/Navbar/Navbar'
 import ProfileContainer from './components/Profile/ProfileContainer'
 import Music from './components/Music/Music'
 import Settings from './components/Settings/Settings'
-import { Route, BrowserRouter, withRouter } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import DialogsContainer from './components/Dialogs/DialogsContainer'
 import UsersComponent from './components/Users/UsersComponent'
 import NewsContainer from './components/News/NewsContainer'

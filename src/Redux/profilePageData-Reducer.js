@@ -40,7 +40,7 @@ const profilePageDataReducer = (state = initialState, action) => {
         case 'DELETE-POST': {
             return {
                 ...state,
-                profilePageData: state.profilePageData.filter(p => p.id != action.postId)
+                profilePageData: state.profilePageData.filter(p => p.id !== action.postId)
             }
         }
         default:

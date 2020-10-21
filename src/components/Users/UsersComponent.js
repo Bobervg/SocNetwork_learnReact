@@ -1,11 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {compose}  from 'redux'
-import { unFollow, follow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching, buttonDisable } from '../../Redux/usersPageData-Reducer'
+import { setCurrentPage,  buttonDisable } from '../../Redux/usersPageData-Reducer'
 import Users from './Users'
 import Preloader from './../common/Preloader'
 import { setUsersThunkCreator, followTC, unFollowTC } from './../../Redux/usersPageData-Reducer';
-import { withAuthRedirect } from './../../hoc/withAuthRedirect';
 import {  getPageSize, getTotalUsersCount, getCurrentPage, getStatusIsFetching, getButtonStatus, getUsersDataSuperSelector } from './../../Redux/selectors/usersPageData-selectors';
 
 
@@ -28,8 +27,9 @@ class UsersComponent extends React.Component {
     render() {
 
         return (<>
-            { this.props.isFetching == true? <Preloader  />:null }
-            <Users totalUsersCount={this.props.totalUsersCount}
+            { this.props.isFetching === true? <Preloader  /> : null }
+
+            <Users totalUsersCount={this.props.totalItemsCount}
                 pageSize={this.props.pageSize}
                 currentPage={this.props.currentPage}
                 users={this.props.users}
@@ -48,7 +48,7 @@ let mapStatetoProps = (state) => {
     return {
         users: getUsersDataSuperSelector(state),
         pageSize: getPageSize(state),
-        totalUsersCount: getTotalUsersCount(state),
+        totalItemsCount: getTotalUsersCount(state),
         currentPage: getCurrentPage(state),
         isFetching: getStatusIsFetching(state),
         isButtonDisabled: getButtonStatus(state)

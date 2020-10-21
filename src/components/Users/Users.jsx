@@ -1,29 +1,24 @@
-import React from 'react'
+import React  from 'react'
 import styles from './Users.module.css'
 import userAvatar from './../../assets/UsersPage/userAvatar.png'
 import { NavLink } from 'react-router-dom'
+import Paginator from '../common/Paginator'
 
 
 const Users = (props) => {
 
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
-    let pages = [];
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i + ' ')
-    }
     return (
         <div>
             <div>
-                {pages.map(p => {
-                    return <span className={props.currentPage === p && styles.activePage} onClick={(e) => { props.onClickPage(p) }}>{p}</span>
-                })}
+                <Paginator {...props} totalItemsCount={props.totalUsersCount}/>
             </div>
+
             {props.users.map(u =>
                 <div key={u.id} className={styles.userInfo}>
                     <div className={styles.avbut}>
                         <div className={styles.avatar}>
                             <NavLink to={'/profile' + u.id}>
-                                <img src={u.photos.small != null ? u.photos.small : userAvatar}></img>
+                                <img src={u.photos.small != null ? u.photos.small : userAvatar} alt={''}></img>
                             </NavLink>
                         </div>
                         <div className={styles.followButton}>

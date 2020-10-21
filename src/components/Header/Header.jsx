@@ -10,7 +10,7 @@ const Header = (props) => {
   }
   return (
     <header className={styles.header}>
-      <img src={headerLogoIcon}></img>
+      <img src={headerLogoIcon} alt={''}></img>
       <div className={styles.loginbar}>
         {props.isLogged ? <div>
           <div>

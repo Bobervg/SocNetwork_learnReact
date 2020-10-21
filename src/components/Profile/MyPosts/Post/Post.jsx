@@ -6,7 +6,7 @@ const Post = (props) => {
     <div>
       <div className={styles.post}>
         <div className={`${styles.item} ${styles.gold}`}>
-        <img src='https://html5css.ru/howto/img_avatar.png'></img>
+        <img src='https://html5css.ru/howto/img_avatar.png' alt={''}></img>
         {props.message}
         <br></br>
         {props.likecount}

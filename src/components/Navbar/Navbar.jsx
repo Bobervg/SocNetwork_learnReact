@@ -15,27 +15,27 @@ const Navbar = (props) => {
     <div className={styles.navbar}>
       <div className={styles.menubar}>
         <div>
-        <img src={homeIcon}></img>
+        <img src={homeIcon} alt={''}></img>
           <NavLink activeClassName={styles.activeLink} to='/Profile'>Profile</NavLink>
         </div>
         <div>
-        <img src={messagesIcon}></img>
+        <img src={messagesIcon} alt={''}></img>
           <NavLink activeClassName={styles.activeLink} to='/Dialogs'>Messages</NavLink>
         </div>
         <div>
-        <img src={newsIcon}></img>
+        <img src={newsIcon} alt={''}></img>
           <NavLink activeClassName={styles.activeLink} to={'/News'}>News</NavLink>
         </div>
         <div>
-        <img src={musicIcon}></img>
+        <img src={musicIcon} alt={''}></img>
           <NavLink activeClassName={styles.activeLink} to={'/Music'}>Music</NavLink>
         </div>
         <div>
-        <img src={settingsIcon}></img>
+        <img src={settingsIcon} alt={''}></img>
           <NavLink activeClassName={styles.activeLink} to={'/Settings'}>Settings</NavLink>
         </div>
         <div>
-          <img src={usersIcon}></img>
+          <img src={usersIcon} alt={''}></img>
           <NavLink activeClassName={styles.activeLink} to={'/Users'}>Users</NavLink>
         </div>
       </div>

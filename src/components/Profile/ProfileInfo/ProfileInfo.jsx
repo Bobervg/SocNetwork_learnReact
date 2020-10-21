@@ -21,10 +21,10 @@ const ProfileInfo = (props) => {
   return (
     <div>
       <div>
-        <img className={styles.wallpaper} src='https://www.metoffice.gov.uk/binaries/content/gallery/metofficegovuk/hero-images/advice/maps-satellite-images/satellite-image-of-globe.jpg'></img>
+        <img className={styles.wallpaper} alt={''} src='https://www.metoffice.gov.uk/binaries/content/gallery/metofficegovuk/hero-images/advice/maps-satellite-images/satellite-image-of-globe.jpg'></img>
       </div>
       <div>
-        <img className={styles.avatar} src="https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"></img>
+        <img className={styles.avatar} alt={''} src="https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"></img>
         <div>
           ava+desc
       <div>
@@ -34,7 +34,7 @@ const ProfileInfo = (props) => {
             <ProfileStatusHooks status={props.status} updateStatus={props.updateStatus}/>
           </div>
           <div>
-            <img src={props.userProfile.photos.large}></img>
+            <img src={props.userProfile.photos.large} alt={''}></img>
           </div>
           <div>
             {props.userProfile.aboutMe}
@@ -48,21 +48,21 @@ const ProfileInfo = (props) => {
             </div>
           </div>
           <div className={styles.contacts}>
-            <span><img src={facebookLogo}></img>{props.userProfile.contacts.facebook}
+            <span><img src={facebookLogo} alt={''}></img>{props.userProfile.contacts.facebook}
             </span>
-            <span><img src={wwwLogo}></img>{props.userProfile.contacts.website}
+            <span><img src={wwwLogo} alt={''}></img>{props.userProfile.contacts.website}
             </span>
-            <span><img src={vkLogo}></img>{props.userProfile.contacts.vk}
+            <span><img src={vkLogo} alt={''}></img>{props.userProfile.contacts.vk}
             </span>
-            <span><img src={twitterLogo}></img>{props.userProfile.contacts.twitter}
+            <span><img src={twitterLogo} alt={''}></img>{props.userProfile.contacts.twitter}
             </span>
-            <span><img src={instLogo}></img>{props.userProfile.contacts.instagram}
+            <span><img src={instLogo} alt={''}></img>{props.userProfile.contacts.instagram}
             </span>
-            <span><img src={youtubeLogo}></img> {props.userProfile.contacts.youtube}
+            <span><img src={youtubeLogo} alt={''}></img> {props.userProfile.contacts.youtube}
             </span>
-            <span><img src={githubLogo}></img>{props.userProfile.contacts.github}
+            <span><img src={githubLogo} alt={''}></img>{props.userProfile.contacts.github}
             </span>
-            <span><img src={'mainLink logo'}></img>{props.userProfile.contacts.mainLink}
+            <span><img src={'mainLink logo'} alt={''}></img>{props.userProfile.contacts.mainLink}
             </span>
           </div>
         </div>

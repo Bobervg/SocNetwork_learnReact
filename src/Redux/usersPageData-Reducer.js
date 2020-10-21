@@ -2,7 +2,7 @@
 import { API } from './../api/api';
 let initialState = {
     usersData: [],
-    pageSize: 50,
+    pageSize: 30,
     totalUsersCount: 20,
     currentPage: 1,
     isFetching: false,
@@ -63,7 +63,7 @@ const usersPageDataReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isButtonDisabled: action.toogle === true ? [...state.isButtonDisabled, action.userId]
-                    : state.isButtonDisabled.filter(id => id != action.userId)
+                    : state.isButtonDisabled.filter(id => id !== action.userId)
             }
         }
         default:

@@ -4,7 +4,7 @@ import loaderGIF from './../../assets/UsersPage/loader.gif'
 const Preloader = (props) => {
     return (
             <div>
-                <img src={loaderGIF}></img>      
+                <img src={loaderGIF} alt={''}></img>      
             </div>
     )
 }

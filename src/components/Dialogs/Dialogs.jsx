@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './Dialogs.module.css'
 import DialogName from './DialogName/DialogName';
 import Message from './Message/Message';
-import { Redirect } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 
 
