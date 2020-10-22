@@ -1,7 +1,7 @@
 import React from 'react';
 import Profile from './Profile'
 import { connect } from 'react-redux'
-import {getUserProfileTC, getProfileStatusTC, updateProfileStatusTC} from './../../Redux/profilePageData-Reducer'
+import {getUserProfileTC, getProfileStatusTC, updateProfileStatusTC, setSaveAvatarTC} from './../../Redux/profilePageData-Reducer'
 import { withRouter } from 'react-router-dom';
 //import { withAuthRedirect } from './../../hoc/withAuthRedirect';
 import { compose } from 'redux';
@@ -10,9 +10,7 @@ import { compose } from 'redux';
 
 class ProfileContainer extends React.Component {
 
-  
-
-  componentDidMount = () => {
+  refreshProfile () {
     let userId = this.props.match.params.userId
     if (!userId) {
       userId = this.props.loggedId
@@ -22,10 +20,20 @@ class ProfileContainer extends React.Component {
     } 
     this.props.setUserProfile(userId)
     this.props.getStatus(userId)
+  }
+
+  componentDidMount = () => {
+    this.refreshProfile()
 }
+
+  componentDidUpdate = (prevProps, prevState, snapshot) => {
+    if (this.props.match.params.userId != prevProps.match.params.userId) {
+    this.refreshProfile()
+    }
+  }
   render () {
     return (
-      <Profile {...this.props} userProfile={this.props.userProfile} status={this.props.status}/>
+      <Profile {...this.props} userProfile={this.props.userProfile} status={this.props.status} isOwner = {!this.props.match.params.userId}/>
     )
   }
 }
@@ -34,11 +42,12 @@ class ProfileContainer extends React.Component {
 let mapStatetoProps = (state) => ({
     userProfile: state.profilePageData.userProfile,
     status: state.profilePageData.status,
-    loggedId: state.authData.id
+    loggedId: state.authData.id,
+    
   })
 
 export default compose (
-  connect(mapStatetoProps, {setUserProfile:getUserProfileTC, getStatus:getProfileStatusTC, updateStatus:updateProfileStatusTC}),
+  connect(mapStatetoProps, {setUserProfile:getUserProfileTC, getStatus:getProfileStatusTC, updateStatus:updateProfileStatusTC, saveAvatar: setSaveAvatarTC}),
   withRouter,
   //withAuthRedirect
 ) ( ProfileContainer )

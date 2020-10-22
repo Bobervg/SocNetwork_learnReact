@@ -42,6 +42,13 @@ export const API = {
     },
     logout () {
         return instance.delete(`/auth/login`)
+    },
+    setAvatar (avatarFile) {
+        let formData = new FormData();
+        formData.append('image', avatarFile)
+        return instance.put(`/profile/photo`, formData,  {headers: {
+            'Content-Type': 'multipar/form-data'
+        }
+    })
     }
-    
 }

@@ -43,6 +43,12 @@ const profilePageDataReducer = (state = initialState, action) => {
                 profilePageData: state.profilePageData.filter(p => p.id !== action.postId)
             }
         }
+        case 'SET-AVATAR': {
+            return {
+                ...state,
+                userProfile: {...state.userProfile, photos: action.avatars }
+            }
+        }
         default:
             return state;
     }
@@ -64,6 +70,16 @@ export const getProfileStatusTC = (userId) => {
     })
     }
 }
+export const setSaveAvatarTC = (avatar) => {
+    return (dispatch) => {
+    API.setAvatar(avatar)
+    .then(response => {
+        if(response.data.resultCode===0){
+            dispatch(setSaveAvatarAC(response.data.data.photos))
+        }
+    })
+    }
+}
 export const updateProfileStatusTC = (status) => {
     return (dispatch) => {
     API.updateProfileStatus(status)
@@ -76,6 +92,10 @@ export const updateProfileStatusTC = (status) => {
 
 export const deletePostAC = (postId) => {
     return { type: 'DELETE-POST', postId }
+}
+
+export const setSaveAvatarAC = (avatars) => {
+    return { type: 'SET-AVATAR', avatars }
 }
 
 
