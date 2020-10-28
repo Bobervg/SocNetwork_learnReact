@@ -1,7 +1,7 @@
 import React from 'react';
 import Profile from './Profile'
 import { connect } from 'react-redux'
-import {getUserProfileTC, getProfileStatusTC, updateProfileStatusTC, setSaveAvatarTC} from './../../Redux/profilePageData-Reducer'
+import {getUserProfileTC, getProfileStatusTC, updateProfileStatusTC, setSaveAvatarTC, saveProfileDataTC} from './../../Redux/profilePageData-Reducer'
 import { withRouter } from 'react-router-dom';
 //import { withAuthRedirect } from './../../hoc/withAuthRedirect';
 import { compose } from 'redux';
@@ -33,7 +33,7 @@ class ProfileContainer extends React.Component {
   }
   render () {
     return (
-      <Profile {...this.props} userProfile={this.props.userProfile} status={this.props.status} isOwner = {!this.props.match.params.userId}/>
+      <Profile {...this.props} userProfile={this.props.userProfile} status={this.props.status} isOwner = {!this.props.match.params.userId} />
     )
   }
 }
@@ -47,7 +47,7 @@ let mapStatetoProps = (state) => ({
   })
 
 export default compose (
-  connect(mapStatetoProps, {setUserProfile:getUserProfileTC, getStatus:getProfileStatusTC, updateStatus:updateProfileStatusTC, saveAvatar: setSaveAvatarTC}),
+  connect(mapStatetoProps, {setUserProfile:getUserProfileTC, getStatus:getProfileStatusTC, updateStatus:updateProfileStatusTC, saveAvatar: setSaveAvatarTC, saveProfileDataTC: saveProfileDataTC}),
   withRouter,
   //withAuthRedirect
 ) ( ProfileContainer )

@@ -6,7 +6,8 @@ let initialState = {
     id: null,
     email: null,
     login: null,
-    isLogged: false
+    isLogged: false,
+    captchaUrl: null
 }
 
 
@@ -18,12 +19,23 @@ const authDataReducer = (state = initialState, action) => {
                 ...action.authData
             }
         }
+        case 'SET_CAPTCHA': {
+            return { 
+                ...state,
+                captchaUrl: action.captchaUrl
+            }
+        }
         default:
             return state;
     }
 }
 
 export const setAuthData = (id, email, login, isLogged) => ({ type: 'SET_AUTH_DATA', authData: {id, email, login, isLogged }})
+
+export const setCaptchaAC = (captchaUrl) => ({ type: 'SET_CAPTCHA', captchaUrl })
+
+
+
 
 export const getAuthDataTC = () => {
     return (dispatch) => {
@@ -34,18 +46,29 @@ export const getAuthDataTC = () => {
     })
     }
 }
-export const loginTC = (email, password, rememberMe) => {
+export const loginTC = (email, password, rememberMe = false, captcha = null) => {
     return (dispatch) => {
-        API.login(email, password, rememberMe).then(response => {
+        API.login(email, password, rememberMe, captcha).then(response => {
             if (response.data.resultCode===0) {
-        dispatch(getAuthDataTC())}
-            else {
-                let errorMessage = response.data.messages[0]
-                dispatch(stopSubmit('loginForm', {_error:errorMessage}))
+        dispatch(getAuthDataTC())
+    } else { 
+        if (response.data.resultCode === 10) {
+            dispatch(getCaptchaTC())
+        }
+        let errorMessage = response.data.messages[0]
+        dispatch(stopSubmit('loginForm', {_error:errorMessage}))
             }
     })
     }
 }
+
+export const getCaptchaTC = () => async (dispatch) => {
+    let response = await API.getCaptcha()
+    const captchaUrl = response.data.url;
+    dispatch(setCaptchaAC(captchaUrl))
+}
+
+
 export const logoutTC = () => {
     return (dispatch) => {
         API.logout().then(response => {

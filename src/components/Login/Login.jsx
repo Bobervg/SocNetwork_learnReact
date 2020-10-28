@@ -10,19 +10,20 @@ import { Redirect } from 'react-router-dom';
 const Login = (props) => {
 
     const onSubmit = (formdata) => {
-        props.loginTC(formdata.email, formdata.password, formdata.rememberMe=false )
+        props.loginTC(formdata.email, formdata.password, formdata.rememberMe, formdata.captcha)
     }
     if(props.isLogged)  return <Redirect to={'/profile'}/>
     return (
         
         <div>
             <div> Login  </div>
-            <LoginReduxForm onSubmit={onSubmit}/>
+            <LoginReduxForm captchaUrl={props.captchaUrl} onSubmit={onSubmit}/>
         </div>
     )
 }
 const mapStateToProps = (state) => ({
-    isLogged: state.authData.isLogged
+    isLogged: state.authData.isLogged,
+    captchaUrl: state.authData.captchaUrl
 })
 
 export default connect (mapStateToProps, {loginTC}) (Login);
@@ -41,6 +42,10 @@ const LoginForm = (props) => {
             </div>
             <div className={styles.errorBox}>
             {props.error}
+            </div>
+            <div>
+    {props.captchaUrl && <img src={props.captchaUrl} alt={''}/> }
+    {props.captchaUrl && <Field name='captcha' component={Input} placeholder='enter captcha' validate={[required]} type='text'/>}
             </div>
             <div>
              <button>Login</button>
